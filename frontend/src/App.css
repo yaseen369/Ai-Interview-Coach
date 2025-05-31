@@ -1,0 +1,684 @@
+/* App.css - Super Cool Dark Theme */
+
+/* --- Variables for easy theming --- */
+:root {
+  --primary-color: #6a82fb; /* Vibrant Blue/Purple Accent */
+  --primary-dark: #4a67f7;
+  --secondary-color: #bbbbbb; /* Light grey for text */
+  --accent-color: #8a9bff; /* Lighter accent */
+  --success-color: #2ecc71; /* Green */
+  --danger-color: #e74c3c; /* Red */
+  --info-color: #3498db; /* Blue for info */
+  --warning-color: #f1c40f; /* Yellow */
+
+  --bg-dark: #1a1a2e; /* Deep dark background */
+  --bg-panel: #2e3047; /* Slightly lighter dark for panels */
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+
+  --text-primary: #e0e0e0; /* Light text on dark bg */
+  --text-secondary: #aaaaaa;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+  --shadow-light: rgba(0, 0, 0, 0.2);
+
+  --font-family-sans: 'Poppins', 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --border-radius-card: 16px;
+  --border-radius-button: 10px;
+}
+
+/* --- Base Styles --- */
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- App Container --- */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Max width for the whole application */
+  background: var(--bg-dark); /* Slightly darker than body for depth */
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 15px 40px var(--shadow-dark);
+  padding: 30px;
+  box-sizing: border-box;
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Header --- */
+.App-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.App-header h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-shadow: 0 0 15px rgba(106, 130, 251, 0.4);
+}
+
+.gemini-icon {
+  font-size: 1.2em; /* Relative to h1 font size */
+  animation: rotateGlow 5s linear infinite;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); text-shadow: 0 0 10px var(--primary-color); }
+  50% { transform: rotate(180deg); text-shadow: 0 0 20px var(--accent-color); }
+  100% { transform: rotate(360deg); text-shadow: 0 0 10px var(--primary-color); }
+}
+
+.App-header .subtitle {
+  font-size: 1.1em;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* --- General Panel Styling --- */
+.panel {
+  background: var(--bg-panel);
+  border-radius: var(--border-radius-card);
+  padding: 30px;
+  box-shadow: 0 8px 20px var(--shadow-light);
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  position: relative; /* For animations */
+}
+
+.panel h2, .panel h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* --- Start Interview Section --- */
+.start-panel {
+  width: 100%;
+  max-width: 600px;
+  animation: fadeInFromTop 0.8s ease-out forwards;
+}
+
+@keyframes fadeInFromTop {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+.form-control {
+  flex-grow: 1;
+  padding: 12px 18px;
+  border-radius: var(--border-radius-button);
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1em;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(106, 130, 251, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--border-radius-button);
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-info {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  font-style: italic;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.error-message {
+  color: var(--danger-color);
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* --- Interview Container --- */
+.interview-container {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  animation: fadeInFromBottom 0.8s ease-out forwards;
+}
+
+@keyframes fadeInFromBottom {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.interview-panel {
+  flex: 2; /* Takes more space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes controls to bottom */
+}
+
+.interview-review-panel {
+  flex: 1; /* Takes less space */
+  max-height: 700px; /* Limit height for scroll */
+  overflow-y: auto; /* Enable scrolling */
+}
+
+.interview-review-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.interview-review-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.interview-review-panel::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+  border: 2px solid var(--bg-panel); /* Creates a border around the thumb */
+}
+
+.interview-review-panel::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+
+/* --- Question Display --- */
+.question-display {
+  margin-bottom: 30px;
+  min-height: 100px; /* Ensure space for question */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.question-display h3 {
+  font-size: 1.8em;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  animation: slideInLeft 0.7s ease-out forwards;
+  opacity: 0; /* Start invisible for animation */
+}
+
+.loading-indicator {
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-style: italic;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Controls --- */
+.controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* --- Mic Volume Indicator --- */
+.mic-volume-indicator {
+  width: 80%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin: 20px auto 15px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.volume-bar {
+  height: 100%;
+  background-color: var(--success-color);
+  transition: width 0.1s ease-out; /* Smooth volume animation */
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); /* Glow effect */
+}
+
+.recording-text-indicator {
+  position: absolute;
+  top: -25px; /* Position above the bar */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85em;
+  color: var(--success-color);
+  animation: pulse-text 1.5s infinite;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.processing-text-indicator {
+  font-style: italic;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  animation: pulse-text 1.5s infinite;
+}
+
+@keyframes pulse-text {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+
+/* --- Text Input Section --- */
+.text-input-section {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.toggle-text-input {
+  margin-bottom: 15px;
+}
+
+.text-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: fadeInScaleUp 0.5s ease-out;
+}
+
+@keyframes fadeInScaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.text-area {
+  min-height: 100px;
+  resize: vertical;
+  font-family: var(--font-family-sans);
+}
+
+/* --- Interview Complete Message --- */
+.interview-complete-message {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.2em;
+  color: var(--success-color);
+  animation: tada 1.5s ease-out;
+}
+
+.interview-complete-message .success-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  animation: bounceIn 0.8s;
+}
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+  20% { transform: scale3d(1.1, 1.1, 1.1); }
+  40% { transform: scale3d(0.9, 0.9, 0.9); }
+  60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+  80% { transform: scale3d(0.97, 0.97, 0.97); }
+  100% { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* --- Interview Summary Section (New) --- */
+.interview-summary-section {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--border-radius-card);
+  padding: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: left; /* Align text within the summary section */
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.interview-summary-section h3 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.interview-summary-section p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* For content with br tags, to allow markdown-like line breaks */
+.interview-summary-section div {
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  color: var(--text-secondary);
+}
+
+.interview-summary-section strong {
+  color: var(--primary-color);
+}
+
+/* --- Interview Review Panel --- */
+.interview-review {
+  margin-top: 20px;
+}
+
+.interview-item {
+  background: rgba(255, 255, 255, 0.07); /* Slightly translucent dark card */
+  border-radius: var(--border-radius-card);
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-out;
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.interview-item:last-child {
+  margin-bottom: 0;
+  animation: newEntryHighlight 1.5s forwards; /* Animation for the latest entry */
+}
+
+@keyframes newEntryHighlight {
+  0% { transform: scale(0.98); border-color: var(--primary-color); box-shadow: 0 0 20px rgba(106, 130, 251, 0.6); }
+  50% { transform: scale(1); border-color: rgba(255, 255, 255, 0.05); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+  100% { transform: scale(1); border-color: rgba(255, 255, 255, 0.05); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+}
+
+
+.interview-item h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 8px;
+}
+
+.interview-item p {
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.interview-item strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.your-answer {
+  margin-top: 15px;
+}
+
+.feedback {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.feedback strong {
+  color: var(--accent-color);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .interview-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .interview-panel, .interview-review-panel {
+    flex: none; /* Remove flex grow/shrink */
+    width: 100%; /* Take full width */
+    max-height: none; /* Allow panels to grow */
+  }
+  .interview-review-panel {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 20px;
+  }
+  .App-header h1 {
+    font-size: 2.5em;
+    gap: 10px;
+  }
+  .App-header .subtitle {
+    font-size: 0.85em;
+  }
+  .panel {
+    padding: 20px;
+  }
+  .input-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .btn {
+    width: 100%; /* Full width buttons on small screens */
+    padding: 15px;
+  }
+  .question-display h3 {
+    font-size: 1.4em;
+  }
+  .controls {
+    flex-direction: column;
+  }
+  .mic-volume-indicator {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 2em;
+    gap: 8px;
+  }
+  .App-header .subtitle {
+    font-size: 0.8em;
+  }
+  .panel {
+    padding: 15px;
+  }
+  .form-control, .text-area {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+  .btn {
+    font-size: 0.9em;
+  }
+  .interview-item h4 {
+    font-size: 1em;
+  }
+  .interview-item p {
+    font-size: 0.85em;
+  }
+}
